@@ -1,0 +1,33 @@
+<table>
+	<tr><td>Response Information</td></tr>
+	<tr><td><%=simple_format h @responses.first.response_content %></td></tr>
+	<tr><td>Reply from <%= @responses.first.created_by %> on <%= @responses.first.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td></tr>
+	<% if @responses.third.service_standard !=nil%>
+	  <tr><td>Satisfaction Rate:<%= @responses.third.service_standard  %></td></tr>
+	<% end %>
+    <% if @case.status=="REPLIED"%>
+	    <form name="response" method="post" action="/create_response?case_id=<%= @case.case_id%>" >
+	    <tr><td>Add comment</td></tr>
+	    <tr><td><%= text_area_tag "content","",:autofocus => true, :style=>"background:white; width:400px; height:200px;"%></td></tr>
+	
+	    <tr><td>Satisfaction</td></tr>
+	    <tr><td>
+	    	<table>
+	    		<tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+	    	    <tr><td><%= radio_button_tag(:rate, "1") %></td>
+	    	    	<td><%= radio_button_tag(:rate, "2") %></td>
+	    	    	<td><%= radio_button_tag(:rate, "3") %></td>
+	    	    	<td><%= radio_button_tag(:rate, "4", checked=true) %></td>
+	    	    	<td><%= radio_button_tag(:rate, "5") %></td>
+	    	    	<td><%= radio_button_tag(:rate, "6") %></td></tr>
+	        </table></td> 	
+	    </tr>
+	    <tr><td><table><tr>
+	    	<td><%= radio_button_tag(:operation, "close",checked=true)%>Close the Case</td>
+	    	<td><%= radio_button_tag(:operation, "reply")%>Reply to the Replier</td>
+	    	<td><%= hidden_field_tag(:response_to, @responses.first.created_by)%></td>	    	
+	    	</tr></table></td></tr>
+	    <tr><td><%= submit_tag "submit"%></td></tr>
+	    </form>
+    <% end %>
+</table>

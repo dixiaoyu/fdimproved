@@ -1,0 +1,42 @@
+<!--    <div class="domtab">
+	 <ul class="domtabs">
+		<li><a href="#what">Detail</a></li>
+		<li style="margin-left: 5px;"><a href="#how">Attach</a></li>
+		<% if @responses.count>0 %>	
+	    <% num = 1%>
+			<% @responses.each do |response|%>				
+			<li style="margin-left: 5px;">	
+			<a href="#f1"><%= response.case_id%></a>
+			<% num=num+1%>
+			</li>
+			<% end %>
+		<% end %>
+	 </ul>
+	<div class="domtab-content">
+		<a href="what" id="what"></a>
+		<p><%= render 'case_info'%></p>
+		</div>
+	<div class="domtab-content">
+		<a href="how" id="how"></a>
+		<% if @case.attachment.nil? || @case.attachment==""%>
+		<p>No any attached file</p>
+		<% end %>
+	</div>
+	<div class="domtab-content">
+		<% if @responses.count>0 %>
+		    <% num = 1%>
+			<% @responses.each do |response|%>				
+				<a href="#f1"id="f1"></a>
+		        <p><%= response.response_content%></p> 
+				<% num=num+1%> 
+ 			<% end %>          		
+		<% end %>
+	</div>
+  </div><!-- end of domtab -->
+  
+  
+  
+  <table>
+  	<tr><td><%= render 'case_general'%></td><td><%= render 'case_info'%></td></tr>
+ 	<tr><td><%= render 'response_general'%></td><td><%= render 'response_info'%></td></tr>
+  </table>

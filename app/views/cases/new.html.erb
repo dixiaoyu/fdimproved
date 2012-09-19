@@ -1,0 +1,37 @@
+
+    <div id="content">
+    	<h1>Create New Case</h1>
+    <table>
+    	<% if @members.count>0 %>
+    	<tr><td></td><td>Member Name</td><td>Branch Name</td></tr>
+    	<form name="agent" action="/case_new?agent=1" method="post">
+    	  <% @members.each do |member| %>
+    	    <tr><td><%= radio_button_tag(:member, member.id) %></td><td><%= member.member_name%></td><td><%= member.branch_name%></td></tr>
+    	  <% end %>	
+    	  <tr><td></td><td><%= submit_tag "Confirm"%></td></tr>
+        </form>         
+        <% end %>  	
+    </table>	
+     <form name="form" action="/case_create" method="post" onsubmit="return Blank_TextField_Validator()">
+     	
+       <table class="feedback">
+       	<% if @member_id != nil %>
+	    	<tr><td>Agent Name:</td><td><%= text_field_tag :member, @member.member_name %></td></tr>
+	    	<tr><td>Branch/Department:</td><td><%= text_field_tag :branch, @member.branch_name %></td></tr>	  
+      	<% else %>
+       	  	<tr><td>Agent Name:</td><td><%= text_field_tag :member%></td></tr>	    	
+	    	<tr><td>Branch/Department:</td><td><%= text_field_tag :branch %></td></tr>
+       	<% end %>            
+    	<tr><td style="width:260px;">Nature Of Complaint:</td>
+    	    <td><%= select_tag(:category, options_for_select(Category.all.collect {|p| [ p.name.strip(), p.id ] })) %></td></tr>
+		<tr><td>Date Of Incident:<br /></td><td><%=date_select "incident","member",:start_year=>2010, :end_year=>Time.now.year.to_i, :default=>100.years.from_now%></td></tr>
+        <tr><td colspan="2">Description:</td></tr>
+        <tr><td colspan="2"><%= text_area_tag :complaint, nil,:style=>"width:560px; height:180px; overflow:hidden;" %></td></tr>
+        <tr><td><%= submit_tag "SEND" %></td>
+			<td><p>Please do not exceed 1000 words</p></td>
+		</tr>
+	  </table>
+	 </form>
+    </div><!-- end of content -->
+    
+  

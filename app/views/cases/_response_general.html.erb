@@ -1,0 +1,6 @@
+<% @responses.each do |response|%>
+<table>
+	<tr><td>Reply from <%= response.created_by %> on <%= response.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td></tr>
+	<tr><td colspan="2"><%=simple_format h response.response_content.truncate(30, :separator => ' ') %></td></tr>
+</table>
+<% end %>

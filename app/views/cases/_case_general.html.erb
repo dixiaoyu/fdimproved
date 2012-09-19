@@ -1,0 +1,5 @@
+<table>
+	<tr><td>Case ID:<%= @case.case_id%></td><td>Current Status:<%= @case.status%></td></tr>
+	<tr><td colspan="2">Content:</td></tr>
+	<tr><td colspan="2"><%=simple_format h @case.content.truncate(60, :separator => ' ') %></td></tr>
+</table>

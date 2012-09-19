@@ -1,0 +1,15 @@
+<table>
+	<tr><td colspan="2" style="font-weight: bold; font-size: 20px">Case Information</td></tr>
+	<tr><td>Case ID:<%= @case.case_id%></td><td>Current Status:<%= @case.status%></td></tr>
+	<tr><td>Date of Incident:<%= @case.incident_date.to_date%></td><td>Date Registered:<%= @case.created_at.to_date%></td></tr>
+	<tr><td colspan="2">Nature of Case:<%=@case.category%></td></tr>	
+	<tr><td colspan="2">Content:</td></tr>
+	<tr><td colspan="2"><%=simple_format h @case.content.truncate(60, :separator => ' ') %></td></tr>
+	<tr><td colspan="2" style="font-weight: bold; font-size: 20px">Complaint</td></tr>
+	<tr><td colspan="2">Customer ID:<%= @case.created_by %></td></tr>
+	<tr><td>First Name:<%= @complaint.first_name%></td><td>Last Name:<%= @complaint.last_name%></td></tr>	
+	<tr><td>Email:<%= @complaint.email%></td><td>Contact No.:<%= @complaint.contact%></td></tr>	
+	<tr><td colspan="2">Address:<%= @complaint.address%></td></tr>	
+	<tr><td colspan="2" style="font-weight: bold; font-size: 20px">Travel Agency</td></tr>
+	<tr><td>Name:<%= @case.member%></td><td>Branch:<%= @case.branch%></td></tr>	
+</table>
