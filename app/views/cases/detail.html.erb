@@ -28,4 +28,51 @@ body{ font-family:Verdana, Arial, serif; font-size:14px;}
   	<tr><td><%= render 'case_general'%></td><td><%= render 'case_info'%></td></tr>
  	<tr><td><%= render 'response_general'%></td><td><%= render 'response_info'%></td></tr>
   </table>
-  
+
+  <div class="domtab">
+	 <ul class="domtabs">
+		<li><a href="#what">Detail<!--<%= render 'case_general'%>--></a></li>
+		<li style="margin-left: 5px;"><a href="#how">Reply<!--<%= render 'response_general'%>--></a></li>
+		<% if @responses.count>0 %>	
+	    <% num = 1%>
+	    <script type="text/javascript">
+	    	var tabname = <%= @responses %>;
+	    	openPage = Function(){
+	    		location.href = "#"+tabname;
+	    	}
+	    </script>
+			<% @responses.each do |response|%>					
+			<li style="margin-left: 5px;">	
+			<a href="javascript:openPage()"><%= response.case_id%></a>
+			<% num=num+1%>
+			</li>
+			<% end %>
+		<% end %>
+	 </ul>
+	<div class="domtab-content">
+		<a href="what" id="what"></a>
+		<p><%= render 'case_info'%></p>
+		<% if @case.attachment.nil? || @case.attachment==""%>
+		<p>No any attached file</p>
+		<% end %>
+		</div>
+	
+		<% if @responses.count>0 %>
+		    <% num = 1%>
+		    <script type="text/javascript">
+	    	var tabname = <%= @response %>;
+	    	openPage = Function(){
+	    		location.href = tabname;
+	    	}
+	        </script>
+			<% @responses.each do |response|%>	
+			<div class="domtab-content">
+		      <a href="javascript:openPage()"></a>			
+			  <p><%= response.response_content%></p> 
+			  <% num=num+1%> 
+			  </div>
+ 			<% end %>          		
+		<% end %>
+	
+  </div><!-- end of domtab -->
+
