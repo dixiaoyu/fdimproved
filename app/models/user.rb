@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessor :password, :password_confirmation 
   attr_accessible :pwd, :user_id, :coy, :first_name, :last_name, :email, :contact,
-                  :gender, :address, :group, :title, :level, :last_login, :pwd_changed,
+                  :gender, :address, :user_group, :title, :level, :last_login, :pwd_changed,
                   :poc, :member, :branch, :created_by, :created_at, :updated_at,
                   :updated_by, :password, :password_confirmation
             

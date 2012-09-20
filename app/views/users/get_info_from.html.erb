@@ -1,0 +1,10 @@
+<table>
+	<tr><td></td><td>Company</td><td>Branch</td><td>user Id</td><td>First Name</td><td>Last Name</td><td>POC</td></tr>
+    <% @users.each do |user|%>
+    <tr><td><%= radio_button_tag(:get_from, user.user_id) %></td>
+    	<td><%= user.member%></td><td><%= user.branch%></td>
+    	<td><%= user.user_id%></td><td><%= user.first_name%></td>
+    	<td><%= user.last_name%></td><td><%= user.poc%></td></tr>
+    <% end %>
+</table>
+

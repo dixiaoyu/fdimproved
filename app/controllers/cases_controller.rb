@@ -38,6 +38,7 @@ class CasesController < ApplicationController
   def show
     @members=Member.all
     @categories=Category.all
+=begin
     if params[:type]=="filter"
       status=params[:status]
       agent_id=params[:agent]
@@ -52,19 +53,24 @@ class CasesController < ApplicationController
       if status !=nil && agent_id !=nil && category_id !=nil
         @cases=Case.find(:all, :conditions=>["status=? and member=? and category=?",status,agent,category])
       end
-    else  
-      if current_user.group=="customer"
-        @cases=Case.find(:all, :conditions=>["created_by=?",current_user.user_id])
-      end
-    end    
+    end
+=end     
+    if current_user.user_group=="customer"
+      @cases=Case.find(:all, :conditions=>["created_by=? and status !=?",current_user.user_id,"CLOSE"])
+    else current_user.user_group=="natas" && current_user.poc=="Y"  
+      @cases=Case.find(:all, :conditions=>["status !=?","CLOSE"],:order => "`created_at` DESC")
+    end
+   
   end
   
   def detail
     @case=Case.find_by_case_id(params[:case_id])
     @complaint=User.find_by_user_id(@case.created_by)
-    if current_user.group=="customer"
+    if current_user.user_group=="customer"
       @responses=Processing.find(:all,:conditions=>["case_id=? and (response_to=? or created_by=?)",
-                                 params[:case_id],current_user.user_id,current_user.user_id])     
+                                 params[:case_id],current_user.user_id,current_user.user_id])  
+    elsif current_user.user_group=="natas"
+      @responses=Processing.find(:all,:conditions=>["case_id=?",params[:case_id]],:order => "`created_at` DESC")                                        
     end
 
   end

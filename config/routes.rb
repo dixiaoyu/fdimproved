@@ -1,14 +1,16 @@
 Fdimproved::Application.routes.draw do
 
-  get "sessions/new"
-
   root :to => 'sessions#new'
+  
   resources :sessions
   match '/signin',  to: 'sessions#new', :as=>:signin  
-
+  match '/signout',  to: 'sessions#destroy', :as=>:signout  
+  
   resources :users
   match '/signup',  to: 'users#new', :as=>:signup    
-  
+  match '/cus_create',  to: 'users#create', :as=>:create   
+  match '/get_info_from',  to: 'users#get_info_from', :as=>:get_info_from  
+
   resources :cases
   match '/case_new',  to: 'cases#new', :as=>:case_new  
   match '/case_create',  to: 'cases#create', :as=>:case_create    

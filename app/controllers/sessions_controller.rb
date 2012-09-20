@@ -2,10 +2,10 @@ class SessionsController < ApplicationController
   def new
     if !cookies.signed[:remember_token].nil?
       #redirect_to current_user  
-      if current_user.group=="natas"
+      if current_user.user_group=="natas"
         #redirect_to natas_home_path(:id=>cookies.signed[:remember_token])
         redirect_to staff_view_case_path(:id=>cookies.signed[:remember_token])  
-      elsif current_user.group=="customer"
+      elsif current_user.user_group=="customer"
         redirect_to case_new_path(:id=>cookies.signed[:remember_token])
       elsif #current_user.user_group=="member"
         redirect_to staff_view_case_path(:id=>cookies.signed[:remember_token])        
@@ -27,12 +27,12 @@ class SessionsController < ApplicationController
       end
       user.update_attributes(:last_login=>Time.now, :updated_by=>params[:session][:user_id])
       sign_in user 
-      if user.group=="admin"
+      if user.user_group=="admin"
         redirect_to user
-      elsif user.group=="natas"
+      elsif user.user_group=="natas"
         #redirect_to natas_home_path(:user_id=>params[:session][:user_id])
         redirect_to staff_view_case_path()
-      elsif user.group=="customer"    
+      elsif user.user_group=="customer"    
         redirect_to case_show_path
       elsif #user.user_group=="member"
         redirect_to staff_view_case_path(:user_id=>params[:session][:user_id])

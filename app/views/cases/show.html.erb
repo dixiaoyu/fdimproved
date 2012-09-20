@@ -1,4 +1,4 @@
-<% if current_user.group=="customer"%>
+
 <form name="form" action="/case_show?type=filter" method="post">
 	<table>
 		<tr><td>Status</td>
@@ -25,6 +25,7 @@
 	    <tr><td><%= submit_tag "Filter"%></td></tr>
 	</table>
 </form>
+
 <table>
 	<th>Case_ID</th><th>Category</th><th>Incident Date</th><th>Submit Date</th><th>Status</th>	
 	<% if @cases !=nil %>
@@ -35,5 +36,3 @@
     <% end %>
     <% end %>
 </table>
-
-<% end %>
