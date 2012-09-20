@@ -31,6 +31,11 @@ class UsersController < ApplicationController
   def get_info_from
     @users=User.find(:all, :conditions=>["user_group !=?","customer"])
   end
+  
+  def get_to_reply
+    @users_natas=User.find(:all, :conditions=>["user_group=? and level=?","natas","Junior"])
+    @users_agency=User.find(:all, :conditions=>["user_group=? and poc=?","member","Y"])
+  end
 
 
 end

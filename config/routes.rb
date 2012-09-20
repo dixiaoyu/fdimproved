@@ -10,6 +10,8 @@ Fdimproved::Application.routes.draw do
   match '/signup',  to: 'users#new', :as=>:signup    
   match '/cus_create',  to: 'users#create', :as=>:create   
   match '/get_info_from',  to: 'users#get_info_from', :as=>:get_info_from  
+  match '/get_to_reply',  to: 'users#get_to_reply', :as=>:get_to_reply 
+  match '/reply_to_customer',  to: 'users#reply_to_customer', :as=>:reply_to_customer     
 
   resources :cases
   match '/case_new',  to: 'cases#new', :as=>:case_new  

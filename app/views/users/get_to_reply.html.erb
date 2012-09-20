@@ -1,0 +1,16 @@
+<table>
+	<tr><td></td><td>Company</td><td>Branch</td><td>user Id</td><td>First Name</td><td>Last Name</td></tr>
+    <% @users_natas.each do |user|%>
+    <tr><td><%= radio_button_tag(:get_to_reply, user.user_id) %></td>
+    	<td><%= user.member%></td><td><%= user.branch%></td>
+    	<td><%= user.user_id%></td><td><%= user.first_name%></td>
+    	<td><%= user.last_name%></td></tr>
+    <% end %>
+    
+    <% @users_agency.each do |agent|%>
+    <tr><td><%= radio_button_tag(:get_to_reply, agent.user_id) %></td>
+    	<td><%= agent.member%></td><td><%= agent.branch%></td>
+    	<td><%= agent.user_id%></td><td><%= agent.first_name%></td>
+    	<td><%= agent.last_name%></td></tr>    
+    <% end %>
+</table>

@@ -13,6 +13,8 @@
 	<tr><td colspan="2" style="font-weight: bold; font-size: 20px">Travel Agency</td></tr>
 	<tr><td>Name:<%= @case.member%></td><td>Branch:<%= @case.branch%></td></tr>	
 	<% if current_user.user_group =="customer" %>
-       <tr><td colspan="2"><%= link_to "Get info from",get_info_from_path,:id=>"link_content"%></td></tr>
+       <tr><td colspan="2"><%= link_to "Get Information From",get_info_from_path,:id=>"link1_content"%></td></tr>
+       <tr><td colspan="2"><%= link_to "Get to Reply",get_to_reply_path,:id=>"link2_content"%></td></tr>
+       <tr><td colspan="2"><%= link_to "Reply to Customer",reply_to_customer_path,:id=>"link3_content"%></td></tr>
 	<% end %>
 </table>

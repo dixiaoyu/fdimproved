@@ -13,7 +13,10 @@ class ProcessingsController < ApplicationController
           @case.update_attributes(:status=>"PROCESSING", :updated_by=>current_user.user_id)            
         end
         redirect_to case_detail_path(:case_id=>@case_id)
-      end                        
+      end 
+    elsif current_user.user_group=="natas"
+                               
     end
   end
+  
 end

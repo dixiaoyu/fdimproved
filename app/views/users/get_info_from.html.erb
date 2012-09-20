@@ -1,3 +1,4 @@
+<form name="form" action="/create_response" method="post">
 <table>
 	<tr><td></td><td>Company</td><td>Branch</td><td>user Id</td><td>First Name</td><td>Last Name</td><td>POC</td></tr>
     <% @users.each do |user|%>
@@ -7,4 +8,9 @@
     	<td><%= user.last_name%></td><td><%= user.poc%></td></tr>
     <% end %>
 </table>
+<table>
+	    <tr><td><%= text_area_tag "response"%></td></tr>
+	    <tr><td><%= submit_tag "submit"%></td></tr>
+</table>
+</form>
 
